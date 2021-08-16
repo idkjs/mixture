@@ -1,5 +1,5 @@
 (lang dune 2.9)
-
+(name mixture)
 (generate_opam_files true)
 
 (package
