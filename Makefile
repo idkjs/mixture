@@ -11,23 +11,39 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
 
-PACKAGE=		mixture
-VERSION=		1.0.0-current
-OFFICER=		michipili@gmail.com
+.DEFAULT_GOAL := help
 
-MODULE=			ocaml.lib:src
-MODULE+=		ocaml.meta:meta
-MODULE+=		ocaml.manual:manual
+project_name = mixture
+opam_file = $(project_name).opam
+DUNE = opam exec -- dune
 
-SUBDIR=			testsuite
+help:
+	@echo "List of available make commands";
+	@echo "";
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}';
+	@echo "";
 
-EXTERNAL=		ocaml.findlib:broken
+lock: ## Generate a lock file
+	opam lock . -y
 
-DISTEXCLUDE=		.merlin
-DISTEXCLUDE+=		.ocamlinit
+build: ## Build the app
+	$(DUNE) build @all
 
-CONFIGURE+=		Makefile.config.in
+watch: ## Build the app in watch mode
+	$(DUNE) build @all -w
+	
+test: ## Run the tests
+	$(DUNE) runtest
 
-.include "generic.project.mk"
+clean:
+	@dune clean
+	rm -rf doc.public
 
+format: ## Format the code
+	dune build @fmt --auto-promote
+
+docs: clean build ## Build the documentation
+	@dune build @doc
+	mkdir -p doc.public
+	cp -r _build/default/_doc/_html doc.public
 ### End of file `Makefile'

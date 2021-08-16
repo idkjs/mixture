@@ -1,0 +1,18 @@
+(test
+ (name unit_testing)
+ ; (wrapped false)
+ (modules testMonad unit_testing testApplicative)
+ (libraries broken mixture))
+
+; (test
+;  (name testApplicative)
+;  ; (wrapped false)
+;  (modules unit_testing testApplicative)
+;  (libraries broken mixture))
+
+; (test
+;  (name testMonad)
+;  (modules testMonad unit_testing)
+;  (libraries broken mixture))
+
+; (include_subdirs unqualified)

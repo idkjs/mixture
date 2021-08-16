@@ -1,0 +1,8 @@
+(library
+ (name mixture)
+ (public_name mixture))
+
+(env
+ (dev
+  (flags
+   (:standard -w -32))))

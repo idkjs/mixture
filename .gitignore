@@ -13,3 +13,5 @@ Makefile.local
 #
 .merlin
 .ocamlinit
+_build
+.vscode

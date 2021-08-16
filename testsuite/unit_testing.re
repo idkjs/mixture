@@ -1,4 +1,4 @@
-(* Main -- Entry point of the test suite
+/* Main -- Entry point of the test suite
 
    Mixture (https://github.com/michipili/mixture)
    This file is part of Mixture
@@ -9,6 +9,6 @@
    This source file is licensed as described in the file COPYING, which
    you should have received as part of this distribution. The terms
    are also available at
-   http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt *)
+   http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt */
 
-let () = Broken.main ()
+let () = Broken.main();
